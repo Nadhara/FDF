@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:30:30 by apruvost          #+#    #+#             */
-/*   Updated: 2018/01/22 14:16:57 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/01/29 13:41:55 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "./minilibx_macos/mlx.h"
 #include "fdf.h"
 
-int	mouse_hook(int button, int x, int y, void *hey)
+int		mouse_hook(int button, int x, int y, void *hey)
 {
 	t_win	*test;
 	test = (t_win *)hey;
@@ -22,7 +22,7 @@ int	mouse_hook(int button, int x, int y, void *hey)
 	return (button);
 }
 
-int	key_hook(int keycode, void *param)
+int		key_hook(int keycode, void *param)
 {
 	switch (keycode)
 	{
@@ -34,16 +34,28 @@ int	key_hook(int keycode, void *param)
 	return ((int)param);
 }
 
-int		main(void)
+void	ft_init(t_win *hey)
 {
-	t_win	*test;
+	hey->nbclicline = 0;
+	hey->height = WIN_HEIGHT;
+	hey->width = WIN_WIDTH;
+}
 
-	test = (t_win *)malloc(sizeof(t_win));
-	test->nbclicline = 0;
-	test->mlxptr = mlx_init();
-	test->winptr = mlx_new_window(test->mlxptr, 800, 800, "Poulet braise");
-	mlx_mouse_hook(test->winptr, mouse_hook, (void *)test);
-	mlx_key_hook(test->winptr, key_hook, (void *)0);
-	mlx_loop(test->mlxptr);
+int		main(int argc, char **argv)
+{
+	t_win	*data;
+	int		fd;
+
+	if ((data = (t_win *)malloc(sizeof(t_win))) == NULL)
+		exit(0);
+	if (((fd = ft_getfile(argc, argv)) == -1))
+		exit(0);
+	ft_init(data);
+	ft_create_map(fd, data);
+	data->mlxptr = mlx_init();
+	data->winptr = mlx_new_window(data->mlxptr, WIN_WIDTH, WIN_HEIGHT, "FdF");
+	mlx_mouse_hook(data->winptr, mouse_hook, (void *)data);
+	mlx_key_hook(data->winptr, key_hook, (void *)0);
+	mlx_loop(data->mlxptr);
 	return (0);
 }

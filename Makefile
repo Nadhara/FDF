@@ -6,7 +6,7 @@
 #    By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/08 04:13:47 by apruvost          #+#    #+#              #
-#    Updated: 2018/01/22 15:31:29 by apruvost         ###   ########.fr        #
+#    Updated: 2018/01/31 14:42:11 by apruvost         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME = fdf
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = 	main.c \
-		line.c
+		line.c \
+		getfile.c \
+		mapcreate.c \
+		draw.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -33,9 +36,8 @@ CC = gcc
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C libft/ fclean
 	@make -C libft/
-	@make -C minilibx_macos/ re
+	@make -C minilibx_macos/
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(LIB_LINK) $(MLX_LINK)
 	@echo "FDF Done !"
 
@@ -45,9 +47,9 @@ $(NAME): $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-		@make -C libft/ clean
-		@make -C minilibx_macos/ clean
-		@echo "Objects files deleted."
+	@make -C libft/ clean
+	@make -C minilibx_macos/ clean
+	@echo "Objects files deleted."
 
 fclean: clean
 	rm -f $(NAME)
@@ -55,4 +57,16 @@ fclean: clean
 	@make -C minilibx_macos/ clean
 	@echo "$(NAME) deleted."
 
+relib:
+	@make -C libft/ re
+	@make -C minilibx_macos/ re
+	@echo "Libs redone."
+
 re: fclean all
+
+respeed:
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(LIB_LINK) $(MLX_LINK)
+	@echo "FDF Done !"
+
+gorespeed: respeed
+	./fdf test.fdf

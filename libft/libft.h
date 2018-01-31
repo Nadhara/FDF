@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 03:09:13 by apruvost          #+#    #+#             */
-/*   Updated: 2018/01/22 15:09:33 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:33:39 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define GNL_BUFF_SIZE 32
+# define GNL_BUFF_SIZE 10000
 
 typedef	struct		s_list
 {
