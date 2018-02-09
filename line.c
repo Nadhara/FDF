@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:02:41 by apruvost          #+#    #+#             */
-/*   Updated: 2018/01/31 15:28:32 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/02/01 13:56:52 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ static void     ft_drawtwo(t_win *data, t_line *line, int color)
     }
 }
 
-static int      ft_initline(t_win *data, int color)
+int      ft_line(t_win *data, int color)
 {
     t_line  line;
 
+    data->nbclicline = 0;
     line.x = data->xi;
     line.y = data->yi;
     line.dx = data->xf - data->xi;
@@ -74,7 +75,7 @@ static int      ft_initline(t_win *data, int color)
     return (0);
 }
 
-int             ft_line(t_win *data, int xl, int yl, int color)
+int             ft_manline(t_win *data, int xl, int yl, int color)
 {
     switch (data->nbclicline)
     {
@@ -86,8 +87,7 @@ int             ft_line(t_win *data, int xl, int yl, int color)
         case 1 :
             data->xf = xl;
             data->yf = yl;
-            ft_initline(data, color);
-            data->nbclicline = 0;
+            ft_line(data, color);
             break;
         default :
             break;

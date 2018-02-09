@@ -6,7 +6,7 @@
 #    By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/08 04:13:47 by apruvost          #+#    #+#              #
-#    Updated: 2018/01/31 14:42:11 by apruvost         ###   ########.fr        #
+#    Updated: 2018/02/09 15:47:53 by apruvost         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ SRCS = 	main.c \
 		line.c \
 		getfile.c \
 		mapcreate.c \
-		draw.c
+		draw.c \
+		key_push.c \
+		ft_ui.c \
+		color.c
 
 OBJS = $(SRCS:.c=.o)
 
