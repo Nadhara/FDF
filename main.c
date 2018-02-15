@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:30:30 by apruvost          #+#    #+#             */
-/*   Updated: 2018/02/09 15:46:23 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:44:58 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 #include "./minilibx_macos/mlx.h"
 #include "fdf.h"
 
-int		mouse_hook(int button, int x, int y, void *hey)
-{
-	t_win	*test;
-
-	test = (t_win *)hey;
-	ft_manline(hey, x, y, test->color);
-	return (button);
-}
-
-int		key_hook(int keycode, void *param)
+int			key_hook(int keycode, void *param)
 {
 	t_win	*data;
 
@@ -32,7 +23,7 @@ int		key_hook(int keycode, void *param)
 	return ((int)param);
 }
 
-void	ft_init(t_win *hey)
+void		ft_init(t_win *hey)
 {
 	hey->nbclicline = 0;
 	hey->height = WIN_HEIGHT;
@@ -44,13 +35,14 @@ void	ft_init(t_win *hey)
 	hey->neg = 1;
 	hey->negg = 1;
 	hey->palcol = 0;
+	hey->tcolor = 1;
 }
 
-void	ft_inittwo(t_win *data)
+void		ft_inittwo(t_win *data)
 {
 	data->len = WIN_WIDTH / (data->nbline + data->nbrow);
-	data->originx = (WIN_WIDTH / (data->nbline + data->nbrow)) * data->nbline;
-	data->originy = ((WIN_HEIGHT / (data->nbline + data->nbrow)) * data->nbline) / 1.5;
+	data->originx = data->len * data->nbline;
+	data->originy = 200;
 	data->colmin[0] = 0x00FFFFFF;
 	data->colten[0] = 0x00FF00FF;
 	data->coltwen[0] = 0x00FF0000;
@@ -65,7 +57,7 @@ void	ft_inittwo(t_win *data)
 	data->colneg[1] = 0x00A0A0A0;
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_win	*data;
 	int		fd;
@@ -79,7 +71,6 @@ int		main(int argc, char **argv)
 	ft_inittwo(data);
 	data->mlxptr = mlx_init();
 	data->winptr = mlx_new_window(data->mlxptr, WIN_WIDTH, WIN_HEIGHT, "FdF");
-	mlx_mouse_hook(data->winptr, mouse_hook, (void *)data);
 	mlx_hook(data->winptr, 2, (1L << 0), key_hook, (void *)data);
 	ft_draw(data);
 	mlx_loop(data->mlxptr);

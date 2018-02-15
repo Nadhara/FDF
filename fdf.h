@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:17:52 by apruvost          #+#    #+#             */
-/*   Updated: 2018/02/09 15:48:18 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:44:43 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,60 @@
 # define WIN_HEIGHT 800
 # define WIN_WIDTH 1000
 
-typedef		struct s_win
+typedef struct		s_win
 {
-	void	*mlxptr;
-	void	*winptr;
-	int		nbclicline;
-	int		width;
-	int		height;
-	int		xi;
-	int		xf;
-	int		yi;
-	int		yf;
-	int		nbline;
-	int		nbrow;
-	int		**mapix;
-	int		originx;
-	int		originy;
-	int		len;
-	int		color;
-	double	h;
-	int		re;
-	int		neg;
-	int		negg;
-	int		colori;
-	int		colorf;
-	int		colmin[2];
-	int		colten[2];
-	int		coltwen[2];
-	int		colfourty[2];
-	int		colhund[2];
-	int		colneg[2];
-	int		palcol;
-}			t_win;
+	void			*mlxptr;
+	void			*winptr;
+	int				nbclicline;
+	int				width;
+	int				height;
+	int				xi;
+	int				xf;
+	int				yi;
+	int				yf;
+	int				nbline;
+	int				nbrow;
+	int				**mapix;
+	int				originx;
+	int				originy;
+	double			len;
+	int				color;
+	double			h;
+	int				re;
+	int				neg;
+	int				negg;
+	int				colori;
+	int				colorf;
+	int				colmin[2];
+	int				colten[2];
+	int				coltwen[2];
+	int				colfourty[2];
+	int				colhund[2];
+	int				colneg[2];
+	int				palcol;
+	int				tcolor;
+}					t_win;
 
-typedef		struct s_line
+typedef struct		s_line
 {
-	int		dx;
-	int		dy;
-	int		xinc;
-	int		yinc;
-	int		cumul;
-	int		x;
-	int		y;
-}			t_line;
+	int				dx;
+	int				dy;
+	int				xinc;
+	int				yinc;
+	int				cumul;
+	int				x;
+	int				y;
+}					t_line;
 
-int			ft_getfile(int argc, char **argv,t_win *data);
-int			ft_line(t_win *data, int color);
-int			ft_manline(t_win *data, int x, int y, int color);
-void		ft_create_map(int fd, t_win *data);
-void		ft_draw(t_win *data);
-void		ft_redraw(t_win *data);
-void		ft_key_push(int keycode, t_win *data);
-void		ft_ui(t_win *data);
-void			ft_colory(t_win *data, int i, int j);
-void			ft_colorx(t_win *data, int i, int j);
+int					ft_getfile(int argc, char **argv, t_win *data);
+int					ft_line(t_win *data, int color);
+void				ft_create_map(int fd, t_win *data);
+void				ft_draw(t_win *data);
+void				ft_redraw(t_win *data);
+void				ft_ui(t_win *data);
+void				ft_key_push(int keycode, t_win *data);
+void				ft_colory(t_win *data, int i, int j);
+void				ft_colorx(t_win *data, int i, int j);
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122

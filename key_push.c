@@ -6,7 +6,7 @@
 /*   By: apruvost <apruvost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 15:01:30 by apruvost          #+#    #+#             */
-/*   Updated: 2018/02/09 15:58:27 by apruvost         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:52:20 by apruvost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,27 @@ static void		ft_keyfour(int keycode, t_win *data)
 			data->palcol = 1;
 		ft_draw(data);
 	}
+	if (keycode == KEY_Q)
+	{
+		ft_redraw(data);
+		data->originx = WIN_WIDTH / 3;
+		data->originy = WIN_HEIGHT / 3;
+		ft_draw(data);
+	}
+	if (keycode == KEY_R)
+	{
+		if (data->tcolor == 1)
+			data->tcolor = 0;
+		else
+			data->tcolor = 1;
+		ft_redraw(data);
+		ft_draw(data);
+	}
 }
 
-static void     ft_keythree(int keycode, t_win *data)
+static void		ft_keythree(int keycode, t_win *data)
 {
-    switch (keycode)
+	switch (keycode)
 	{
 		case KEY_DOWN :
 			ft_redraw(data);
@@ -51,13 +67,13 @@ static void     ft_keythree(int keycode, t_win *data)
 	}    
 }
 
-static void     ft_keytwo(int keycode, t_win *data)
+static void		ft_keytwo(int keycode, t_win *data)
 {
-    switch (keycode)
+	switch (keycode)
 	{
 		case KEY_PAD_ADD :
 			ft_redraw(data);
-			data->len++;
+			data->len += 1;
 			ft_draw(data);
 			break;
 		case KEY_LEFT :
@@ -80,9 +96,9 @@ static void     ft_keytwo(int keycode, t_win *data)
 	}    
 }
 
-void    ft_key_push(int keycode, t_win *data)
+void			ft_key_push(int keycode, t_win *data)
 {
-    switch (keycode)
+	switch (keycode)
 	{
 		case KEY_ESCAPE :
 			exit(0);
@@ -98,7 +114,7 @@ void    ft_key_push(int keycode, t_win *data)
 			break;
         case KEY_PAD_SUB :
             ft_redraw(data);
-            data->len--;
+            data->len -= 1;
             ft_draw(data);
             break;
 		default :
